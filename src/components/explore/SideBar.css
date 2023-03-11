@@ -1,0 +1,22 @@
+.sidebar {
+    display: inline;
+    position: fixed;
+    left: 0;
+    background-color: white;
+    z-index: 999;
+    padding: 4px;
+    
+    color: purple;
+    height: 100%;
+    width:20%;
+  }
+
+ .map-container{
+    display: flex;
+    width:80%;
+    margin-left: auto;
+ }
+
+ .explore {
+    display:flex;
+ }

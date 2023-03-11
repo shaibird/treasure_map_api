@@ -3,8 +3,7 @@ import { MapContainer, TileLayer, useMap, Marker, Popup, useMapEvents } from 're
 import "./Map.css"
 import { Modal } from './SaveModal'
 
-export const Map = () => {
-    const [position, setPosition] = useState(null);
+export const Map = ({position, setPosition}) => {
     const [showModal, setShowModal] = useState(false);
 
     

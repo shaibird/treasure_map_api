@@ -12,6 +12,7 @@
   }
   
   .modal {
+    display: inline;
     position: relative;
     background-color: white;
     padding: 1rem;
