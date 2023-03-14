@@ -1,5 +1,5 @@
 import { Map } from "./Map"
-import { SideBar } from "../sidebar/SideBar"
+import { SideBar } from "../savelocation/SideBar"
 import {useState, useEffect} from 'react'
 import "./Explore.css"
 
