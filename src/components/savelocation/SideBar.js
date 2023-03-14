@@ -3,9 +3,8 @@ import { SaveLocation } from "./SaveLocation"
 import { DisplayLocations } from "../displaylocation/DisplayLocations"
 
 
-export const SideBar = ({position}) => {
+export const SideBar = ({position, locations, setLocations}) => {
 return <>
-    <SaveLocation position={position}/>
-    <DisplayLocations />
+    <DisplayLocations locations={locations} setLocations={setLocations}/>
 </>
 }

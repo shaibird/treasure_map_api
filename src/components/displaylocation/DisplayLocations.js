@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react'
-import { MapContainer, TileLayer, useMap, Marker, Popup } from 'react-leaflet'
 import { getLocations } from '../../managers/LocationManager'
 
-export const DisplayLocations = () => {
-  const [locations, setLocations] = useState([]);
-
+export const DisplayLocations = ({locations, setLocations}) => {
+    
   useEffect(() => {
     const fetchLocations = async () => {
       const data = await getLocations();

@@ -2,7 +2,6 @@ import { fetchIt } from "../components/auth/fetchit";
 
 export const getLocations = () => {
     return fetchIt(`http://localhost:8000/locations`
-        .then(response => response.json())
     )
 }
 
