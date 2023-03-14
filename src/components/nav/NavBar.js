@@ -16,11 +16,11 @@ export const NavBar = () => {
             <img className="nav-logo" src={myLogo} alt={"Treasure Map Logo"} />
             <nav className="nav-left">
             {
-                (localStorage.getItem("lu_token") !== null) ?
+                (localStorage.getItem("tm_token") !== null) ?
                     <ul className="nav-item">
                         <button className="nav-link fakeLink"
                             onClick={() => {
-                                localStorage.removeItem("lu_token")
+                                localStorage.removeItem("tm_token")
                                 navigate('/login')
                             }}
                         >Logout</button>
