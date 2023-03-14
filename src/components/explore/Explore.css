@@ -1,0 +1,9 @@
+.map-container{
+    display: flex;
+    width:80%;
+    margin-left: auto;
+ }
+
+ .explore {
+    display:flex;
+ }
