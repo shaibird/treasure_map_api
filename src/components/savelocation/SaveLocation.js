@@ -11,7 +11,7 @@ export const SaveLocation = ({ position }) => {
   const localUser = localStorage.getItem("tm_token");
   const userObject = JSON.parse(localUser);
 
-  console.log(userObject.token);
+  console.log(userObject);
 
   const saveNewLocation = (event) => {
     event.preventDefault();
@@ -87,7 +87,7 @@ export const SaveLocation = ({ position }) => {
           <div className="save-labels">Longitude: {lon}</div>
           <Toggle label="Private" toggled={pin.private} onToggle={handleToggle} />
         </fieldset>
-        <button type="submit" onClick={saveNewLocation}>Save</button>
+        <button type="submit" onClick={saveNewLocation}>Save Location</button>
       </form>
     </div>
   );
