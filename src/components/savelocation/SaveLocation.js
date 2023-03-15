@@ -36,7 +36,7 @@ export const SaveLocation = ({ position, setShowSaveLocation }) => {
     name: "",
     latitude: lat,
     longitude: lon,
-    user: userObject.token,
+    user: userObject.id,
     private: false,
     date: new Date(),
   });

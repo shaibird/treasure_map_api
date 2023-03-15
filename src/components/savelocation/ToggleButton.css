@@ -1,11 +1,11 @@
-label {
+.togglelabel {
     position: relative;
     display: inline-block;
     width: 60px;
     height: 30px;
 }
 
-input {
+.toggleinput {
     opacity: 0;
     width: 0;
     height: 0;
@@ -35,15 +35,15 @@ input {
     transition: 0.3s;
   }
   
-  input:checked + .toggle {
+  .toggleinput:checked + .toggle {
     background-color: #00c853;
   }
   
-  input:checked + .toggle:before {
+  .toggleinput:checked + .toggle:before {
     transform: translateX(29px);
   }
   
-  strong {
+  .strongstrong {
     position: absolute;
     left: 100%;
     width: max-content;
