@@ -3,7 +3,7 @@ import { createLocation } from "../../managers/LocationManager";
 import { Toggle } from "./ToggleButton";
 import './SaveLocation.css'
 
-export const SaveLocation = ({ position }) => {
+export const SaveLocation = ({ position, setShowSaveLocation }) => {
   const [lat, setLat] = useState(null);
   const [lon, setLon] = useState(null);
   const [locations, setLocations] = useState([]);
@@ -53,6 +53,9 @@ export const SaveLocation = ({ position }) => {
     setPin({ ...pin, private: isToggled })
   };
   
+  const handleCloseSaveLocationClick = () => {
+    setShowSaveLocation(false);
+  }
 
   useEffect(() => {
     if (position) {
@@ -88,6 +91,7 @@ export const SaveLocation = ({ position }) => {
           <Toggle label="Private" toggled={pin.private} onToggle={handleToggle} />
         </fieldset>
         <button type="submit" onClick={saveNewLocation}>Save Location</button>
+        <button type="close"onClick={handleCloseSaveLocationClick}>Close</button>
       </form>
     </div>
   );

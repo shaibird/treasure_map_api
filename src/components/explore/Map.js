@@ -2,8 +2,12 @@ import { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, useMapEvents, useMap, Popup } from 'react-leaflet';
 import './Map.css';
 
-export const Map = ({ position, setPosition, locations }) => {
-    
+export const Map = ({ position, setPosition, locations, setShowLocationDetails, setLocationDetail }) => {
+  
+  const toggleLocationDetail = () => {
+    setShowLocationDetails(true);
+  }
+
   const LocationMarker = () => {
     useMapEvents({
       click: (e) => setPosition(e.latlng),
@@ -21,7 +25,9 @@ export const Map = ({ position, setPosition, locations }) => {
           <Popup>
             <div>
               <h3>{location.name}</h3>
-              <p>{location.description}</p>
+                <button onClick={() => {
+                toggleLocationDetail()
+                setLocationDetail(location)}}>Show Details</button>
             </div>
           </Popup>
         </Marker>
