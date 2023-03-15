@@ -11,10 +11,10 @@ export const Toggle = ({ label, toggled, onToggle }) => {
   };
 
   return (
-    <label>
-      <input type="checkbox" checked={isToggled} onChange={handleToggle} />
+    <label className="togglelabel">
+      <input className="toggleinput" type="checkbox" checked={isToggled} onChange={handleToggle} />
       <span className="toggle" />
-      <strong>{label}</strong>
+      <strong className="togglestrong">{label}</strong>
     </label>
   );
 };

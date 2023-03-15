@@ -1,0 +1,10 @@
+.save-note{
+        display: inline;
+        position:absolute;
+        left:0;
+        background-color: white;
+        z-index: 1001;
+        height:100%;
+        width:100%;
+}
+
