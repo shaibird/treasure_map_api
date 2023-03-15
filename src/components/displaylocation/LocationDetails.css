@@ -1,0 +1,9 @@
+.details {
+    display: inline;
+    position:absolute;
+    left:0;
+    background-color: white;
+    z-index: 1000;
+    height:100%;
+    width:20%;
+}
