@@ -5,9 +5,12 @@ import { AddNotesForm } from './AddNotesForm';
 import { getLocationNotes } from '../../managers/LocationManager';
 import { deleteNote } from '../../managers/LocationManager';
 import { EditNoteForm } from './EditNoteForm';
+import { AddLayerToLocationButton } from '../layers/AddLayerToLocationButton';
+import { DeleteLocationButton } from './DeleteLocationButton';
 
 export const LocationDetails = ({setShowLocationDetails, locationDetail}) => {
     const [addNote, setAddNote] = useState(false);
+    const [addLayer, setAddLayer] = useState(false);
     const [locationNotes, setLocationNotes] = useState([])
     const [modal, setModal] = useState()
     const [noteToUpdate, setNoteToUpdate] = useState([])
@@ -45,8 +48,11 @@ export const LocationDetails = ({setShowLocationDetails, locationDetail}) => {
             }
         )}
         <AddNotesButton location={locationDetail} setAddNote={setAddNote} />
+        <AddLayerToLocationButton location={locationDetail} setAddLayer={setAddLayer} />
+        <DeleteLocationButton location={locationDetail}/>
         {addNote && <AddNotesForm location={locationDetail} setAddNote={setAddNote} /> }
         {modal && <EditNoteForm setModal={setModal} noteToUpdate={noteToUpdate} />} 
+        {addLayer && <AddLayerForm location={locationDetail}/>}
     </div>
     </section>
 }
