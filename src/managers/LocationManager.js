@@ -42,22 +42,6 @@ export const deleteNote = (id) => {
     })
   }
 
-  export const createNewLayer = (event) => {
-    return fetchIt(`http://localhost:8000/layers`, {
-        method:"POST",
-        body:JSON.stringify(event)
-      })
-  }
 
-  export const addPinToLayer = (event) => {
-    return fetchIt(`http://localhost:8000/pins`, {
-        method:"POST",
-        body:JSON.stringify(event)
-      })
-  }
 
-  export const getPinsByLayer = (layer) => {
-    const encodedLayer = layer.replace(/\s/g, '%20');
-    return fetchIt(`http://localhost:8000/pins?layernames=${encodedLayer}`);
-  }
   

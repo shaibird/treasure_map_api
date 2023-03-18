@@ -7,6 +7,8 @@ import { deleteNote } from '../../managers/LocationManager';
 import { EditNoteForm } from './EditNoteForm';
 import { AddLayerToLocationButton } from '../layers/AddLayerToLocationButton';
 import { DeleteLocationButton } from './DeleteLocationButton';
+import { AddLayerForm } from './AddLayerForm';
+
 
 export const LocationDetails = ({setShowLocationDetails, locationDetail}) => {
     const [addNote, setAddNote] = useState(false);
@@ -14,6 +16,7 @@ export const LocationDetails = ({setShowLocationDetails, locationDetail}) => {
     const [locationNotes, setLocationNotes] = useState([])
     const [modal, setModal] = useState()
     const [noteToUpdate, setNoteToUpdate] = useState([])
+    const [addPin, setAddPin] = useState(false)
 
     const toggleModal = () => {
         setModal(!modal)
@@ -52,7 +55,7 @@ export const LocationDetails = ({setShowLocationDetails, locationDetail}) => {
         <DeleteLocationButton location={locationDetail}/>
         {addNote && <AddNotesForm location={locationDetail} setAddNote={setAddNote} /> }
         {modal && <EditNoteForm setModal={setModal} noteToUpdate={noteToUpdate} />} 
-        {addLayer && <AddLayerForm location={locationDetail}/>}
+        {addLayer && <AddLayerForm location={locationDetail} setAddPin={setAddPin}/>}
     </div>
     </section>
 }

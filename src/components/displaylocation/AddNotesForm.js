@@ -4,9 +4,7 @@ import { Toggle } from "../savelocation/ToggleButton";
 import './AddNotesForm.css'
 
 export const AddNotesForm = ({ location, setAddNote }) => {
-    
-
-    const localUser = localStorage.getItem("tm_token");
+     const localUser = localStorage.getItem("tm_token");
     const userObject = JSON.parse(localUser);
 
 
@@ -36,14 +34,6 @@ export const AddNotesForm = ({ location, setAddNote }) => {
         private: false,
         date: new Date(),
     });
-
-    const handleNoteChange = (event) => {
-        const note = event.target.value;
-        setNote((prevState) => ({
-            ...prevState,
-            note: note,
-        }));
-    };
 
     const handleToggle = (isToggled) => {
         setNote({ ...note, private: isToggled })
