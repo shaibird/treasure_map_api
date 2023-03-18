@@ -55,7 +55,7 @@ export const LocationDetails = ({setShowLocationDetails, locationDetail}) => {
         <DeleteLocationButton location={locationDetail}/>
         {addNote && <AddNotesForm location={locationDetail} setAddNote={setAddNote} /> }
         {modal && <EditNoteForm setModal={setModal} noteToUpdate={noteToUpdate} />} 
-        {addLayer && <AddLayerForm location={locationDetail} setAddPin={setAddPin}/>}
+        {addLayer && <AddLayerForm location={locationDetail} setAddPin={setAddLayer}/>}
     </div>
     </section>
 }

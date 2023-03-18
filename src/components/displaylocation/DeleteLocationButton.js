@@ -10,7 +10,7 @@ export const DeleteLocationButton = ({ location }) => {
 
   return (
     <div>
-      <button onClick={handleDeleteLocation}>Delete note</button>
+      <button onClick={handleDeleteLocation}>Delete Location</button>
     </div>
   );
 };

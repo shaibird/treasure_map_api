@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import './AddNotesForm.css'
 import { addPinToLayer, getLayersByUser } from "../../managers/LayerManager";
+import { AddNewLayerName } from "./AddNewLayerName";
 
 export const AddLayerForm = ({ location, setAddPin }) => {
     const [userLayers, setUserLayers] = useState([]);
     const [checkedState, setCheckedState] = useState([]);
+    const [addNewLayer, setAddNewLayer] = useState(false)
 
     const localUser = localStorage.getItem("tm_token");
     const userObject = JSON.parse(localUser);
@@ -27,9 +29,15 @@ export const AddLayerForm = ({ location, setAddPin }) => {
         setCheckedState(updatedCheckedState);
     };
 
+    //function for adding a pin to a layer to open and close on click
     const handleCloseClick = () => {
         setAddPin(false);
     };
+
+    //function for the new layer NAME to open and close on click
+    const handleCloseNewLayer = () => {
+        setAddNewLayer(true);
+    }
 
     const savePinToLayer = (event) => {
         event.preventDefault();
@@ -60,6 +68,8 @@ export const AddLayerForm = ({ location, setAddPin }) => {
             <div className="modal">
                 <div className="overlay">
                     <div className="modal-content">
+                       <button onClick={handleCloseNewLayer}>Add a new layer</button>
+                       {addNewLayer && <AddNewLayerName setAddNewLayer={setAddNewLayer} />}
                         <ul className="layer-list">
                             {userLayers.map(({ id, name }, index) => (
                                 <li key={id}>
