@@ -8,3 +8,13 @@
         width:100%;
 }
 
+.toggle {
+    display:inline;
+    align-items: right;
+    
+}
+
+.togglestrong {
+    display: inline;
+    
+}

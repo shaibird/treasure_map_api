@@ -48,15 +48,15 @@ export const AddNotesForm = ({ location, setAddNote }) => {
     }
 
     return (
-        <div className="sidebar">
+        <div className="Notes">
             <form className="save-note" onSubmit={handleSubmit}>
-                <fieldset>
-                    <div className="form-group">
+                <fieldset className="notes">
+                    <div className="notes-form">
                         <label htmlFor="name">Note:</label>
                         <input
                             required autoFocus
                             type="text"
-                            className="form-control"
+                            className="notes-form-control"
                             placeholder="Location Note"
                             value={note.note}
                             onChange={(event) => setNote(prevNote => ({ ...prevNote, note: event.target.value }))}
