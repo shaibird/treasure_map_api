@@ -1,84 +1,89 @@
 import { useState, useEffect } from "react";
-import { saveNote } from "../../managers/LocationManager";
-import { Toggle } from "../savelocation/ToggleButton";
 import './AddNotesForm.css'
+import { addPinToLayer, getLayersByUser } from "../../managers/LayerManager";
 
-export const AddLayersToPins = ({ location, setAddNote }) => {
-    
+export const AddLayerForm = ({ location, setAddPin }) => {
+    const [userLayers, setUserLayers] = useState([]);
+    const [checkedState, setCheckedState] = useState([]);
 
     const localUser = localStorage.getItem("tm_token");
     const userObject = JSON.parse(localUser);
 
+    console.log(location)
 
-    const saveNewNote = (event) => {
-        event.preventDefault();
-
-        const noteToSendToAPI = {
-            ...note,
-            date: new Date(),
+    useEffect(() => {
+        const fetchUserLayers = async () => {
+            const data = await getLayersByUser(userObject.id);
+            setUserLayers(data);
+            setCheckedState(data.map(layer => false));
         };
+        fetchUserLayers();
+    }, []);
 
-        saveNote(noteToSendToAPI)
-            .then((savedNote) => {
-                console.log("Note saved:", savedNote);
-                // Do something with the savedLocation, e.g. update state or redirect to another page
-            })
-            .catch((error) => {
-                console.error("Failed to save note:", error);
-                // Do something with the error, e.g. show an error message
-            });
-    };
-
-    const [layerName, setLayerName] = useState({
-        name: "",
-        user: userObject.id,
-    });
-
-    const [pinsToLayers, setPinsToLayers] = useState({
-        layer: layer.id,
-        location: location.location
-    })
-
-    const handleNoteChange = (event) => {
-        const note = event.target.value;
-        setNote((prevState) => ({
-            ...prevState,
-            note: note,
-        }));
-    };
-
-    const handleToggle = (isToggled) => {
-        setNote({ ...note, private: isToggled })
+    const handleOnChange = (position) => {
+        const updatedCheckedState = checkedState.map((item, index) =>
+            index === position ? !item : item
+        );
+        setCheckedState(updatedCheckedState);
     };
 
     const handleCloseClick = () => {
-        setAddNote(false);
-    }
+        setAddPin(false);
+    };
 
-    const handleSubmit = (event) => {
-        saveNewNote(event);
-    }
+    const savePinToLayer = (event) => {
+        event.preventDefault();
+      
+        const selectedLayers = userLayers.filter((layer, index) => checkedState[index]);
+        const pinsToSendToAPI = selectedLayers.map(layer => ({
+          layer: layer.id,
+          location: location.id
+        }));        
+      
+        pinsToSendToAPI.forEach((pin) => {
+          addPinToLayer(pin)
+            .then((savedPin) => {
+              console.log("Pin saved:", savedPin);
+              // Do something with the savedPin, e.g. update state or redirect to another page
+            })
+            .catch((error) => {
+              console.error("Failed to save pin:", error);
+              // Do something with the error, e.g. show an error message
+            });
+        });
+      };
+      
+    
 
     return (
         <div className="sidebar">
-            <form className="save-note" onSubmit={handleSubmit}>
-                <fieldset>
-                    <div className="form-group">
-                        <label htmlFor="name">Note:</label>
-                        <input
-                            required autoFocus
-                            type="text"
-                            className="form-control"
-                            placeholder="Location Note"
-                            value={note.note}
-                            onChange={(event) => setNote(prevNote => ({ ...prevNote, note: event.target.value }))}
-                        />
+            <div className="modal">
+                <div className="overlay">
+                    <div className="modal-content">
+                        <ul className="layer-list">
+                            {userLayers.map(({ id, name }, index) => (
+                                <li key={id}>
+                                    <div className="layer-item">
+                                        <div className="left-section">
+                                            <input
+                                                type="checkbox"
+                                                id={`layer-${index}`}
+                                                name={name}
+                                                value={name}
+                                                checked={checkedState[index]}
+                                                onChange={() => handleOnChange(index)}
+                                            />
+                                            <label htmlFor={`layer-${index}`}>{name}</label>
+                                        </div>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                        <button type="button" onClick={savePinToLayer}>Add Layer</button>
+                        <button type="button" onClick={handleCloseClick}>Close</button>
                     </div>
-                    <Toggle label="Private" toggled={note.private} onToggle={handleToggle} />
-                </fieldset>
-                <button type="button" onClick={saveNewNote}>Save Note</button>
-                <button type="button" onClick={handleCloseClick}>Close</button>
-            </form>
+                </div>
+            </div>
         </div>
     );
 };
