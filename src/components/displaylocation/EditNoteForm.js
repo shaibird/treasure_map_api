@@ -4,7 +4,7 @@ import { Toggle } from "../savelocation/ToggleButton";
 import { updateNote } from "../../managers/LocationManager";
 import './EditNoteForm.css'
 
-export const EditNoteForm = ({setModal, noteToUpdate}) => {
+export const EditNoteForm = ({setModal, noteToUpdate, fetchLocationNotes}) => {
     const localUser = localStorage.getItem("tm_token");
     const userObject = JSON.parse(localUser);
 
@@ -34,7 +34,13 @@ export const EditNoteForm = ({setModal, noteToUpdate}) => {
             .catch((error) => {
                 console.error("Failed to update note:", error);
                 // Do something with the error, e.g. show an error message
-            });
+            })
+            .then(() => {
+                handleCloseClick()
+            })
+            .then(() => {
+                fetchLocationNotes()
+            })
     };
 
     const handleCloseClick = () => {
@@ -66,8 +72,8 @@ export const EditNoteForm = ({setModal, noteToUpdate}) => {
                     <div className="modal-content">
                         <DeleteNotesButton noteToUpdate={noteToUpdate} handleCloseClick={handleCloseClick}/>
                         <form className="save-note" onSubmit={handleSubmit}>
-                            <fieldset>
-                                <div className="form-group">
+                            <fieldset className="notes">
+                                <div className="form-group-note">
                                     <label htmlFor="name">Note:</label>
                                     <input 
                                         required autoFocus

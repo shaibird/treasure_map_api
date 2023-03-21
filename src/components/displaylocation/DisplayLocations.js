@@ -20,7 +20,7 @@ export const DisplayLocations = ({locations, setLocations, setShowLocationDetail
   }
 console.log(locations)
   return (
-    <div>
+    <div className="locations-list">
       {locations.map(location => (
         <p key={location.id} onClick={() => {
           toggleLocationDetail()

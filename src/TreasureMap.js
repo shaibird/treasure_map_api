@@ -4,6 +4,7 @@ import { ApplicationViews } from "./views/ApplicationViews"
 import { Register } from "./components/auth/Register"
 import { Explore } from "./components/explore/Explore"
 import { Login } from "./components/auth/Login"
+import { Home } from "./components/home/Home"
 
 
 
@@ -14,6 +15,7 @@ export const TreasureMap = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/explore" element={<Explore />} />
+      <Route path="/home" element={<Home />} />
       <Route
         path="*"
         element={

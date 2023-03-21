@@ -25,7 +25,7 @@ export const Login = () => {
                         name: res.first_name,
                         token: res.token,
                       }))
-                    navigate("/")
+                    navigate("/home")
                 }
                 else {
                     invalidDialog.current.showModal()

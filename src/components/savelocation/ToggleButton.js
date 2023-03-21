@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import './ToggleButton.css'
 
 export const Toggle = ({ label, toggled, onToggle }) => {
   const [isToggled, setIsToggled] = useState(toggled);

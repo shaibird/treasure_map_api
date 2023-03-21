@@ -11,37 +11,46 @@ export const UploadImageForm = ({ location }) => {
     location: location.id,
     private: false,
     image: image,
+    date: new Date().toISOString()
   });
+  
 
   const getBase64 = (file, callback) => {
     const reader = new FileReader();
     reader.addEventListener('load', () => callback(reader.result));
     reader.readAsDataURL(file);
-}
+  }
 
-const createLocationImageString = (event) => {
+  const createLocationImageString = (event) => {
     getBase64(event.target.files[0], (base64ImageString) => {
-        console.log("Base64 of file is", base64ImageString);
-        setImage(base64ImageString)
+      console.log("Base64 of file is", base64ImageString);
+      setImage(base64ImageString);
+      setUserImage({
+        ...userImage,
+        image: base64ImageString,
+      });
     });
-}
+  };
+
 
   const handleSubmit = (event) => {
     saveNewImage(event);
-}
+  }
+
 
   const handleChange = (e) => {
     const { id, checked } = e.target;
     const value = checked;
-    setImage({ ...userImage, [id]: value });
+    setUserImage({ ...userImage, [id]: value });
   };
 
 
   const saveNewImage = (event) => {
     event.preventDefault();
-    
+  
     const imageToSendToAPI = {
-        ...userImage,
+      ...userImage,
+      date: new Date().toISOString() // add a default value for the date field
     };
   
     addImage(imageToSendToAPI)
