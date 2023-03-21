@@ -7,3 +7,22 @@
  .explore {
     display:flex;
  }
+
+ .save-button {
+   position: fixed;
+   top: 100px
+ }
+ .locations-list {
+   position:fixed;
+   top: 140px;
+ }
+
+ .close-button-explore {
+   position:fixed;
+   top:120px
+ }
+
+ .location-details {
+   position:fixed;
+   top:140px
+ }

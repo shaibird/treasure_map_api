@@ -12,6 +12,9 @@ import { UploadImageButton } from '../images/UploadImageButton';
 import { UploadImageForm } from '../images/UploadImageForm';
 import { DisplayLayers } from '../layers/DisplayLayers';
 import { getPinsByLocationId } from '../../managers/LayerManager';
+import { EditLocationButton } from './EditLocationButton';
+import { EditLocationDetail } from './EditLocationDetail';
+
 
 
 export const LocationDetails = ({setShowLocationDetails, locationDetail, fetchLocations}) => {
@@ -23,6 +26,7 @@ export const LocationDetails = ({setShowLocationDetails, locationDetail, fetchLo
     const [uploadImage, setUploadImage] = useState(false)
     const [userLayers, setUserLayers] = useState([]);
     const [addPin, setAddPin] = useState(false)
+    const [editLocation, setEditLocation] = useState(false)
 
     const toggleModal = () => {
         setModal(!modal)
@@ -37,6 +41,10 @@ export const LocationDetails = ({setShowLocationDetails, locationDetail, fetchLo
         setShowLocationDetails(false)
     }
 
+    const showEditLocationForm = () => {
+        setEditLocation(!editLocation)
+    }
+
     const fetchUserPins = async () => {
         const data = await getPinsByLocationId(locationDetail.id);
         setUserLayers(data);
@@ -49,7 +57,7 @@ export const LocationDetails = ({setShowLocationDetails, locationDetail, fetchLo
         console.log(locationNotes)
 
     return <section className="details" key={`location--${locationDetail.id}`}>
-    <button onClick={showLocationDetails}>x</button>
+    <button className="close-button-explore" onClick={showLocationDetails}>x</button>
     <div className="location-details">
         {locationDetail.name}
         {locationNotes.map(
@@ -67,11 +75,12 @@ export const LocationDetails = ({setShowLocationDetails, locationDetail, fetchLo
         <DisplayLayers location={locationDetail} fetchUserPins={fetchUserPins} userLayers={userLayers}/>
         <UploadImageButton setUploadImage={setUploadImage} />
         <DeleteLocationButton location={locationDetail} showLocationDetails={showLocationDetails} fetchLocations={fetchLocations}/>
-
+        <EditLocationButton showEditLocationForm={showEditLocationForm} />
         {addNote && <AddNotesForm location={locationDetail} setAddNote={setAddNote} fetchLocationNotes={fetchLocationNotes}/> }
         {modal && <EditNoteForm setModal={setModal} noteToUpdate={noteToUpdate} fetchLocationNotes={fetchLocationNotes} />} 
         {addLayer && <AddLayerForm location={locationDetail} setAddPin={setAddLayer} fetchUserPins={fetchUserPins}/>}
         {uploadImage && <UploadImageForm location={locationDetail} setUploadImage={setUploadImage} />}
+        {editLocation && <EditLocationDetail location={locationDetail} showLocationDetails={showLocationDetails}/>}
     </div>
     </section>
 }

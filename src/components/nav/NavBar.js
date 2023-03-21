@@ -18,12 +18,12 @@ export const NavBar = () => {
             {
                 (localStorage.getItem("tm_token") !== null) ?
                     <ul className="nav-item">
-                        <button className="nav-link fakeLink"
+                        <Link className="nav-link fakeLink"
                             onClick={() => {
                                 localStorage.removeItem("tm_token")
                                 navigate('/login')
                             }}
-                        >Logout</button>
+                        >Logout</Link>
                     </ul> :
                     <>
                         <ul className="nav-item">

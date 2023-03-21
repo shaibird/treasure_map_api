@@ -94,7 +94,7 @@ export const SaveLocation = ({ position, setShowSaveLocation, fetchLocations }) 
           <Toggle label="Private" toggled={pin.private} onToggle={handleToggle} />
         </fieldset>
         <button type="submit" onClick={saveNewLocation}>Save Location</button>
-        <button type="close"onClick={handleCloseSaveLocationClick}>Close</button>
+        <button className="close-button" type="close"onClick={handleCloseSaveLocationClick}>Close</button>
       </form>
     </div>
   );
