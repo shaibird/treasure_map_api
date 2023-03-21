@@ -3,7 +3,7 @@ import { createNewLayer, getLayersByUser } from "../../managers/LayerManager";
 import { Toggle } from "../savelocation/ToggleButton";
 import './AddNotesForm.css'
 
-export const AddNewLayerName = ({setAddNewLayer}) => {
+export const AddNewLayerName = ({setAddNewLayer, fetchUserLayers}) => {
      const localUser = localStorage.getItem("tm_token");
     const userObject = JSON.parse(localUser);
 
@@ -25,8 +25,11 @@ export const AddNewLayerName = ({setAddNewLayer}) => {
                 // Do something with the error, e.g. show an error message
             })
             .then(() => {
-                getLayersByUser(userObject.id)
-            });
+                handleCloseClick()
+            })
+            .then(() => {
+                fetchUserLayers()
+            })
     };
 
     const [layer, setLayer] = useState({

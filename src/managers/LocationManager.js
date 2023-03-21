@@ -43,5 +43,9 @@ export const deleteNote = (id) => {
   }
 
 
-
-  
+  export const addImage = (event) => {
+    return fetchIt(`http://localhost:8000/images`,{
+        method:"POST",
+        body:JSON.stringify(event)
+    })
+}

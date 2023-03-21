@@ -8,29 +8,41 @@ import { EditNoteForm } from './EditNoteForm';
 import { AddLayerToLocationButton } from '../layers/AddLayerToLocationButton';
 import { DeleteLocationButton } from './DeleteLocationButton';
 import { AddLayerForm } from './AddLayerForm';
+import { UploadImageButton } from '../images/UploadImageButton';
+import { UploadImageForm } from '../images/UploadImageForm';
+import { DisplayLayers } from '../layers/DisplayLayers';
+import { getPinsByLocationId } from '../../managers/LayerManager';
 
 
-export const LocationDetails = ({setShowLocationDetails, locationDetail}) => {
+export const LocationDetails = ({setShowLocationDetails, locationDetail, fetchLocations}) => {
     const [addNote, setAddNote] = useState(false);
     const [addLayer, setAddLayer] = useState(false);
     const [locationNotes, setLocationNotes] = useState([])
     const [modal, setModal] = useState()
     const [noteToUpdate, setNoteToUpdate] = useState([])
+    const [uploadImage, setUploadImage] = useState(false)
+    const [userLayers, setUserLayers] = useState([]);
     const [addPin, setAddPin] = useState(false)
 
     const toggleModal = () => {
         setModal(!modal)
     }
 
+    const fetchLocationNotes = async () => {
+        const data = await getLocationNotes(locationDetail.id);
+        setLocationNotes(data);
+      };
+
     const showLocationDetails = () => {
         setShowLocationDetails(false)
     }
 
+    const fetchUserPins = async () => {
+        const data = await getPinsByLocationId(locationDetail.id);
+        setUserLayers(data);
+      };
+
     useEffect(() => {
-        const fetchLocationNotes = async () => {
-          const data = await getLocationNotes(locationDetail.id);
-          setLocationNotes(data);
-        };
         fetchLocationNotes();
       }, []);
 
@@ -50,12 +62,16 @@ export const LocationDetails = ({setShowLocationDetails, locationDetail}) => {
                 </section>
             }
         )}
-        <AddNotesButton location={locationDetail} setAddNote={setAddNote} />
+        <AddNotesButton setAddNote={setAddNote} />
         <AddLayerToLocationButton location={locationDetail} setAddLayer={setAddLayer} />
-        <DeleteLocationButton location={locationDetail}/>
-        {addNote && <AddNotesForm location={locationDetail} setAddNote={setAddNote} /> }
-        {modal && <EditNoteForm setModal={setModal} noteToUpdate={noteToUpdate} />} 
-        {addLayer && <AddLayerForm location={locationDetail} setAddPin={setAddLayer}/>}
+        <DisplayLayers location={locationDetail} fetchUserPins={fetchUserPins} userLayers={userLayers}/>
+        <UploadImageButton setUploadImage={setUploadImage} />
+        <DeleteLocationButton location={locationDetail} showLocationDetails={showLocationDetails} fetchLocations={fetchLocations}/>
+
+        {addNote && <AddNotesForm location={locationDetail} setAddNote={setAddNote} fetchLocationNotes={fetchLocationNotes}/> }
+        {modal && <EditNoteForm setModal={setModal} noteToUpdate={noteToUpdate} fetchLocationNotes={fetchLocationNotes} />} 
+        {addLayer && <AddLayerForm location={locationDetail} setAddPin={setAddLayer} fetchUserPins={fetchUserPins}/>}
+        {uploadImage && <UploadImageForm location={locationDetail} setUploadImage={setUploadImage} />}
     </div>
     </section>
 }

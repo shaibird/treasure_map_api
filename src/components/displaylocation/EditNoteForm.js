@@ -64,7 +64,7 @@ export const EditNoteForm = ({setModal, noteToUpdate}) => {
             <div className="modal">
                 <div className="overlay">
                     <div className="modal-content">
-                        <DeleteNotesButton noteToUpdate={noteToUpdate}/>
+                        <DeleteNotesButton noteToUpdate={noteToUpdate} handleCloseClick={handleCloseClick}/>
                         <form className="save-note" onSubmit={handleSubmit}>
                             <fieldset>
                                 <div className="form-group">
