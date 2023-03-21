@@ -3,10 +3,13 @@ import { saveNote } from "../../managers/LocationManager";
 import { Toggle } from "../savelocation/ToggleButton";
 import './AddNotesForm.css'
 
-export const AddNotesForm = ({ location, setAddNote }) => {
-     const localUser = localStorage.getItem("tm_token");
+export const AddNotesForm = ({ location, setAddNote, fetchLocationNotes }) => {
+    const localUser = localStorage.getItem("tm_token");
     const userObject = JSON.parse(localUser);
 
+    const handleCloseClick = () => {
+        setAddNote(false);
+    }
 
     const saveNewNote = (event) => {
         event.preventDefault();
@@ -24,7 +27,12 @@ export const AddNotesForm = ({ location, setAddNote }) => {
             .catch((error) => {
                 console.error("Failed to save note:", error);
                 // Do something with the error, e.g. show an error message
-            });
+            })
+            .then(() => {
+                handleCloseClick()
+            }).then(() => {
+                fetchLocationNotes()
+            })
     };
 
     const [note, setNote] = useState({
@@ -39,9 +47,7 @@ export const AddNotesForm = ({ location, setAddNote }) => {
         setNote({ ...note, private: isToggled })
     };
 
-    const handleCloseClick = () => {
-        setAddNote(false);
-    }
+
 
     const handleSubmit = (event) => {
         saveNewNote(event);

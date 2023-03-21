@@ -27,3 +27,7 @@ export const getPinsByLayerID = (id) => {
 export const getLayersByUser = (id) => {
     return fetchIt(`http://localhost:8000/layers?user=${id}`)
 }
+
+export const getPinsByLocationId=(id) => {
+    return fetchIt(`http://localhost:8000/pins?location=${id}`)
+}

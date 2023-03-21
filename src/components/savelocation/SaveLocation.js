@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { createLocation } from "../../managers/LocationManager";
+import { createLocation, getLocations } from "../../managers/LocationManager";
 import { Toggle } from "./ToggleButton";
 import './SaveLocation.css'
 
-export const SaveLocation = ({ position, setShowSaveLocation }) => {
+export const SaveLocation = ({ position, setShowSaveLocation, fetchLocations }) => {
   const [lat, setLat] = useState(null);
   const [lon, setLon] = useState(null);
   const [locations, setLocations] = useState([]);
@@ -11,7 +11,6 @@ export const SaveLocation = ({ position, setShowSaveLocation }) => {
   const localUser = localStorage.getItem("tm_token");
   const userObject = JSON.parse(localUser);
 
-  console.log(userObject);
 
   const saveNewLocation = (event) => {
     event.preventDefault();
@@ -24,18 +23,22 @@ export const SaveLocation = ({ position, setShowSaveLocation }) => {
     createLocation(locationToSendToAPI)
       .then((savedLocation) => {
         console.log("Location saved:", savedLocation);
-        // Do something with the savedLocation, e.g. update state or redirect to another page
       })
       .catch((error) => {
         console.error("Failed to save location:", error);
-        // Do something with the error, e.g. show an error message
-      });
-  };
+      })
+      .then(() => {
+        handleCloseSaveLocationClick()
+      })
+      .then(() => {
+        fetchLocations()
+      })
+    };
   
   const [pin, setPin] = useState({
     name: "",
-    latitude: lat,
-    longitude: lon,
+    latitude: null,
+    longitude: null,
     user: userObject.id,
     private: false,
     date: new Date(),

@@ -1,6 +1,6 @@
 import { deleteNote } from "../../managers/LocationManager";
 
-export const DeleteNotesButton = ({ noteToUpdate }) => {
+export const DeleteNotesButton = ({ noteToUpdate, handleCloseClick, fetchLocationNotes }) => {
   const handleDeleteNote = () => {
     if (noteToUpdate) {
       deleteNote(noteToUpdate.id);
@@ -9,7 +9,11 @@ export const DeleteNotesButton = ({ noteToUpdate }) => {
 
   return (
     <div>
-      <button onClick={handleDeleteNote}>Delete note</button>
+      <button onClick={()=> {
+        handleDeleteNote();
+        handleCloseClick();
+        fetchLocationNotes()
+      }}>Delete note</button>
     </div>
   );
 };

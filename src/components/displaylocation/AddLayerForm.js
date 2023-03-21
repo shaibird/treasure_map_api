@@ -3,7 +3,7 @@ import './AddNotesForm.css'
 import { addPinToLayer, getLayersByUser } from "../../managers/LayerManager";
 import { AddNewLayerName } from "./AddNewLayerName";
 
-export const AddLayerForm = ({ location, setAddPin }) => {
+export const AddLayerForm = ({ location, setAddPin, fetchUserPins }) => {
     const [userLayers, setUserLayers] = useState([]);
     const [checkedState, setCheckedState] = useState([]);
     const [addNewLayer, setAddNewLayer] = useState(false)
@@ -11,15 +11,16 @@ export const AddLayerForm = ({ location, setAddPin }) => {
     const localUser = localStorage.getItem("tm_token");
     const userObject = JSON.parse(localUser);
 
-    console.log(location)
+    console.log(userObject)
+
+    const fetchUserLayers = async () => {
+        const data = await getLayersByUser(userObject.id);
+        setUserLayers(data);
+        setCheckedState(data.map(layer => false))
+    };
 
     useEffect(() => {
-        const fetchUserLayers = async () => {
-            const data = await getLayersByUser(userObject.id);
-            setUserLayers(data);
-            setCheckedState(data.map(layer => false));
-        };
-        fetchUserLayers();
+        fetchUserLayers()
     }, []);
 
     const handleOnChange = (position) => {
@@ -57,7 +58,13 @@ export const AddLayerForm = ({ location, setAddPin }) => {
             .catch((error) => {
               console.error("Failed to save pin:", error);
               // Do something with the error, e.g. show an error message
-            });
+            })
+            .then(() => {
+                handleCloseClick()
+            })
+            .then(() => {
+                fetchUserPins()
+            })
         });
       };
       
@@ -69,7 +76,7 @@ export const AddLayerForm = ({ location, setAddPin }) => {
                 <div className="overlay">
                     <div className="modal-content">
                        <button onClick={handleCloseNewLayer}>Add a new layer</button>
-                       {addNewLayer && <AddNewLayerName setAddNewLayer={setAddNewLayer} />}
+                       {addNewLayer && <AddNewLayerName setAddNewLayer={setAddNewLayer} fetchUserLayers={fetchUserLayers}/>}
                         <ul className="layer-list">
                             {userLayers.map(({ id, name }, index) => (
                                 <li key={id}>

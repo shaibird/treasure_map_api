@@ -31,7 +31,7 @@ export const Register = () => {
                 .then(res => {
                     if ("token" in res) {
                         localStorage.setItem("tm_token", res.token)
-                        navigate("/")
+                        navigate("/login")
                     }
                 })
         } else {

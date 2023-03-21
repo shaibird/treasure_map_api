@@ -1,6 +1,6 @@
-import { AddNotesForm } from "./AddNotesForm"
 
-export const AddNotesButton = ({addNote, setAddNote, location, }) => {
+
+export const AddNotesButton = ({setAddNote}) => {
     const handleAddNoteForm = () => {
         setAddNote(true);
       }
