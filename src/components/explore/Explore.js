@@ -24,15 +24,15 @@ export const Explore = () => {
 
   useEffect(() => {
     fetchLocations()
-    },
+  },
     []
-    )
+  )
 
   return (
     <div className="explore">
       <div className="sidebar">
         <button className="save-button" onClick={handleSaveLocationClick}>Save a New Location</button>
-        <SideBar position={position} locations={locations} setLocations={setLocations} setShowLocationDetails={setShowLocationDetails} setLocationDetail={setLocationDetail} locationDetail={locationDetail} fetchLocations={fetchLocations}/>
+        <SideBar position={position} locations={locations} setLocations={setLocations} setShowLocationDetails={setShowLocationDetails} setLocationDetail={setLocationDetail} locationDetail={locationDetail} fetchLocations={fetchLocations} />
       </div>
       <div className="map-container">
         <Map position={position} setPosition={setPosition} locations={locations} setShowLocationDetails={setShowLocationDetails} setLocationDetail={setLocationDetail} />
