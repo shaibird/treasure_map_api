@@ -62,6 +62,5 @@ button:hover {
     border: none;
     color: white;
     box-shadow: 0 0.5em 0.5em -0.04em #284b63;
-    transform: translateY(-0.25em);
     cursor: pointer;
 }

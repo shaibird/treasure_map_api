@@ -1,5 +1,6 @@
 import { getLayersByUser, getPinsByLayerID, getPinsByLocationId } from "../../managers/LayerManager";
 import { useEffect, useState } from "react";
+import './Layers.css'
 
 export const DisplayLayers = ({location, fetchUserPins, userLayers}) => {
 
@@ -12,27 +13,31 @@ export const DisplayLayers = ({location, fetchUserPins, userLayers}) => {
     fetchUserPins();
   }, [location]);
 
-     console.log(userLayers)
   if (userLayers.length === 0) {
-    return <p>No layers found.</p>;
+    return <section>
+    <div className="userlayers">Your Location Layers</div><p></p></section>
   } else if (userLayers.length === 1) {
     const layer = userLayers[0];
     return (
+      <section>
+      <div className="userlayers">Your Location Layers</div>
       <div>
         <p key={layer.id} onClick={() => {}}>
           {layer.layer.name}
         </p>
-      </div>
+      </div></section>
     );
   } else {
     return (
+      <section>
+      <div className="userlayers">Your Location Layers</div>
       <div>
         {userLayers.map((layer) => (
           <p key={layer.id} onClick={() => {}}>
             {layer.layer.name}
           </p>
         ))}
-      </div>
+      </div></section>
     );
   }
 };

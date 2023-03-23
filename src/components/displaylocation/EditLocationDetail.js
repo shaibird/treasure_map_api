@@ -1,5 +1,5 @@
 import { AddNotesButton } from './AddNotesButton'
-import './LocationDetails.css'
+import './EditLocationDetails.css'
 import { useState, useEffect } from 'react';
 import { AddNotesForm } from './AddNotesForm';
 import { getLocationNotes } from '../../managers/LocationManager';
@@ -15,7 +15,7 @@ import { getPinsByLocationId } from '../../managers/LayerManager';
 
 
 
-export const EditLocationDetail = ({ setShowLocationDetails, location, fetchLocations, showLocationDetails }) => {
+export const EditLocationDetail = ({ fetchLocationNotes, fetchLocationImages, showEditLocationForm, location, fetchLocations, showLocationDetails }) => {
     const [addNote, setAddNote] = useState(false);
     const [addLayer, setAddLayer] = useState(false);
     const [locationNotes, setLocationNotes] = useState([])
@@ -28,12 +28,6 @@ export const EditLocationDetail = ({ setShowLocationDetails, location, fetchLoca
     const toggleModal = () => {
         setModal(!modal)
     }
-
-    const fetchLocationNotes = async () => {
-        const data = await getLocationNotes(location.id);
-        setLocationNotes(data);
-    };
-
 
     const fetchUserPins = async () => {
         const data = await getPinsByLocationId(location.id);
@@ -50,9 +44,16 @@ export const EditLocationDetail = ({ setShowLocationDetails, location, fetchLoca
         <div className="modal-edit">
             <div className="overlay-edit">
                 <div className="modal-content-edit">
-                    <div className="details" key={`location--${location.id}`}>
-                        <button onClick={showLocationDetails}>x</button>
-                        <div className="location-details">
+                    <div className="details-edit-form" key={`location--${location.id}`}>
+                        <button className="edit-modal-close"
+                            onClick={() => {
+                                showEditLocationForm();
+                                fetchLocationNotes();
+                                fetchUserPins();
+                                fetchLocationImages()
+                            }}
+                            >Close</button>
+                        <div className="location-details-edit">
                             {location.name}
                             {locationNotes.map(
                                 (note) => {
@@ -61,19 +62,23 @@ export const EditLocationDetail = ({ setShowLocationDetails, location, fetchLoca
                                             toggleModal()
                                             setNoteToUpdate(note)
                                         }}>Edit</button>{note.note}
-                                    </section>
-                                }
-                            )}
-                            <AddNotesButton setAddNote={setAddNote} />
-                            <AddLayerToLocationButton location={location} setAddLayer={setAddLayer} />
-                            <DisplayLayers location={location} fetchUserPins={fetchUserPins} userLayers={userLayers} />
-                            <UploadImageButton setUploadImage={setUploadImage} />
-                            <DeleteLocationButton location={location} showLocationDetails={showLocationDetails} fetchLocations={fetchLocations} />
 
-                            {addNote && <AddNotesForm location={location} setAddNote={setAddNote} fetchLocationNotes={fetchLocationNotes} />}
-                            {modal && <EditNoteForm setModal={setModal} noteToUpdate={noteToUpdate} fetchLocationNotes={fetchLocationNotes} />}
-                            {addLayer && <AddLayerForm location={location} setAddPin={setAddLayer} fetchUserPins={fetchUserPins} />}
-                            {uploadImage && <UploadImageForm location={location} setUploadImage={setUploadImage} />}
+                                    </section>
+
+                                }
+
+                            )}
+                            <div className='edit-location-modal'>
+                                {modal && <EditNoteForm setModal={setModal} noteToUpdate={noteToUpdate} fetchLocationNotes={fetchLocationNotes} />}
+                                <AddNotesButton setAddNote={setAddNote} />
+                                <AddLayerToLocationButton location={location} setAddLayer={setAddLayer} />
+                                {addLayer && <AddLayerForm location={location} setAddPin={setAddLayer} fetchUserPins={fetchUserPins} />}
+                                <DisplayLayers location={location} fetchUserPins={fetchUserPins} userLayers={userLayers} />
+                                <UploadImageButton setUploadImage={setUploadImage} />
+                                <DeleteLocationButton location={location} showLocationDetails={showLocationDetails} fetchLocations={fetchLocations} />
+
+                                {addNote && <AddNotesForm location={location} setAddNote={setAddNote} fetchLocationNotes={fetchLocationNotes} />}
+                                {uploadImage && <UploadImageForm location={location} setUploadImage={setUploadImage} />}</div>
                         </div>
                     </div>
                 </div>

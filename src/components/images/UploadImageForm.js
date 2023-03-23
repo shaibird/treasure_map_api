@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { addImage } from '../../managers/LocationManager';
+import { addImage } from '../../managers/ImageManager';
 
-export const UploadImageForm = ({ location }) => {
+export const UploadImageForm = ({ location, setUploadImage, fetchLocationImages }) => {
   const localUser = localStorage.getItem('tm_token');
   const userObject = JSON.parse(localUser);
   const [image, setImage] = useState("")
@@ -14,6 +14,7 @@ export const UploadImageForm = ({ location }) => {
     date: new Date().toISOString()
   });
   
+  console.log(userImage)
 
   const getBase64 = (file, callback) => {
     const reader = new FileReader();
@@ -31,6 +32,10 @@ export const UploadImageForm = ({ location }) => {
       });
     });
   };
+
+  const handleUploadImageForm = () => {
+    setUploadImage(false);
+}
 
 
   const handleSubmit = (event) => {
@@ -61,7 +66,14 @@ export const UploadImageForm = ({ location }) => {
       .catch((error) => {
         console.error('Failed to save image:', error);
         // Do something with the error, e.g. show an error message
-      });
+      })
+      .then(() => {
+        handleUploadImageForm()
+      })
+      .then(() => {
+        fetchLocationImages()
+      }
+      )
   };
   
 

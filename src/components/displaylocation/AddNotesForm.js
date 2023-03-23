@@ -55,7 +55,7 @@ export const AddNotesForm = ({ location, setAddNote, fetchLocationNotes }) => {
 
     return (
         <div className="Notes">
-            <form className="save-note" onSubmit={handleSubmit}>
+            <form className="save-note-s" onSubmit={handleSubmit}>
                 <fieldset className="notes">
                     <div className="notes-form">
                         <label htmlFor="name">Note:</label>

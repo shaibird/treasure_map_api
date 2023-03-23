@@ -1,6 +1,6 @@
 .sidebar {
     display: inline;
-    position: absolute;
+    position: fixed;
     left: 0;
     background-color: white;
     z-index: 999;
@@ -8,6 +8,8 @@
     color: black;
     height: 100%;
     width:20%;
+    box-shadow: 0 0.5em 0.5em -0.04em #284b63;
+    overflow-y: scroll;
   }
 
 

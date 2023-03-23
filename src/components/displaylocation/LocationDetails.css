@@ -1,5 +1,5 @@
 .details {
-    display: inline;
+    display: flex;
     position:absolute;
     left:0;
     background-color: white;
@@ -7,9 +7,17 @@
     height:100%;
     width:20%;
 }
-
+.images {
+    display:absolute;
+    align-items: center;
+    padding-left:60px
+}
 .location-details {
-    width:100%
+    display:flex;
+    flex-direction:column;
+    width:100%;
+    padding-left:15px;
+    margin-top: 330px;
 }
 
 body.active-modal {
@@ -43,13 +51,39 @@ body.active-modal {
     min-width: 300px;
 }
 
-.close-button-explore {
-    position: absolute;
-    transform: translate(30%, -100%);
-    ;
-
-}
 
 .editLocation {
     transform: translate 
 }
+.details-close {
+    width:4%;
+}
+
+.save-note {
+ padding-left: 15px;
+ opacity: 1;
+}
+
+.close-button-explore {
+    transform: translate(-25%, -100%);
+}
+
+.name {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.notes {
+    display:flex;
+}
+
+.note {
+    max-width: 300px;
+
+}
+
+.user-notes{
+    font-weight: 600;
+    padding-top: 15px;
+}
+
