@@ -17,7 +17,7 @@
     flex-direction:column;
     width:100%;
     padding-left:15px;
-    margin-top: 275px;
+    margin-top: 330px;
 }
 
 body.active-modal {
@@ -67,3 +67,23 @@ body.active-modal {
 .close-button-explore {
     transform: translate(-25%, -100%);
 }
+
+.name {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.notes {
+    display:flex;
+}
+
+.note {
+    max-width: 300px;
+
+}
+
+.user-notes{
+    font-weight: 600;
+    padding-top: 15px;
+}
+

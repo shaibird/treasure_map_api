@@ -71,7 +71,7 @@ export const AddLayerForm = ({ location, setAddPin, fetchUserPins }) => {
     
 
     return (
-        <div className="sidebar">
+        <div className="layer-modal">
             <div className="modal">
                 <div className="overlay">
                     <div className="modal-content">

@@ -66,15 +66,13 @@ export const EditNoteForm = ({setModal, noteToUpdate, fetchLocationNotes}) => {
     };
 
     return (
-        <div className="sidebar">
-            <div className="modal">
-                <div className="overlay">
-                    <div className="modal-content">
+        <div className="edit">
+                        <div className="edit-note-form">
                         <DeleteNotesButton noteToUpdate={noteToUpdate} handleCloseClick={handleCloseClick}/>
-                        <form className="save-note" onSubmit={handleSubmit}>
+                        <form className="edit-note-form" onSubmit={handleSubmit}>
                             <fieldset className="notes">
                                 <div className="form-group-note">
-                                    <label htmlFor="name">Note:</label>
+                                    <label className ="edit-note" htmlFor="name">Note:</label>
                                     <input 
                                         required autoFocus
                                         type="text"
@@ -88,9 +86,6 @@ export const EditNoteForm = ({setModal, noteToUpdate, fetchLocationNotes}) => {
                             <button type="button" onClick={updateExistingNote}>Update Note</button>
                             <button type="button" onClick={handleCloseClick}>Close</button>
                         </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+                    </div></div>
     );
 };

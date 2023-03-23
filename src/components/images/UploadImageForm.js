@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { addImage } from '../../managers/ImageManager';
 
-export const UploadImageForm = ({ location, setUploadImage }) => {
+export const UploadImageForm = ({ location, setUploadImage, fetchLocationImages }) => {
   const localUser = localStorage.getItem('tm_token');
   const userObject = JSON.parse(localUser);
   const [image, setImage] = useState("")
@@ -70,6 +70,10 @@ export const UploadImageForm = ({ location, setUploadImage }) => {
       .then(() => {
         handleUploadImageForm()
       })
+      .then(() => {
+        fetchLocationImages()
+      }
+      )
   };
   
 

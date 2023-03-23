@@ -6,7 +6,7 @@
   }
   .box {
     max-width: 500px;
-    margin: auto;
+    margin-left: -50px;
   }
   
   .nav_btn {
@@ -74,4 +74,19 @@
     margin-top: 1rem;
     text-transform: uppercase;
     font-weight: 700;
+  }
+
+  .default {
+    display:flex;
+    position:relative;
+    width:250px;
+    height:250px;
+    box-shadow: 0 0.2em 0.2em -0.02em #284b63;
+    border-radius: 12px;
+    cursor: pointer;
+    align-items: center;
+    object-fit: cover;
+    margin-top: 70px;
+    margin-left:-5px
+
   }
