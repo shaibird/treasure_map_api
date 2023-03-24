@@ -15,27 +15,27 @@ export const DisplayLayers = ({location, fetchUserPins, userLayers}) => {
 
   if (userLayers.length === 0) {
     return <section>
-    <div className="userlayers">Your Location Layers</div><p></p></section>
+    <div className="userlayers"></div><p></p></section>
   } else if (userLayers.length === 1) {
     const layer = userLayers[0];
     return (
       <section>
-      <div className="userlayers">Your Location Layers</div>
+      <div className="userlayers"></div>
       <div>
-        <p key={layer.id} onClick={() => {}}>
+        <li key={layer.id} onClick={() => {}}>
           {layer.layer.name}
-        </p>
+        </li>
       </div></section>
     );
   } else {
     return (
       <section>
-      <div className="userlayers">Your Location Layers</div>
+      <div className="userlayers"></div>
       <div>
         {userLayers.map((layer) => (
-          <p key={layer.id} onClick={() => {}}>
+          <li key={layer.id} onClick={() => {}}>
             {layer.layer.name}
-          </p>
+          </li>
         ))}
       </div></section>
     );

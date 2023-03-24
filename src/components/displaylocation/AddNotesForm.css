@@ -18,3 +18,11 @@
     display: inline;
     
 }
+
+.notes-form {
+    display: flex;
+}
+
+.togglelabel {
+    padding-left: 10px;
+}

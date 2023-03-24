@@ -5,6 +5,7 @@ import { SaveLocation } from "../savelocation/SaveLocation"
 import "./Explore.css"
 import { LocationDetails } from "../displaylocation/LocationDetails"
 import { getLocations } from "../../managers/LocationManager"
+import { getAllImages } from "../../managers/ImageManager"
 
 export const Explore = () => {
   const [position, setPosition] = useState(null);
@@ -21,6 +22,7 @@ export const Explore = () => {
     const data = await getLocations();
     setLocations(data);
   }
+
 
   useEffect(() => {
     fetchLocations()

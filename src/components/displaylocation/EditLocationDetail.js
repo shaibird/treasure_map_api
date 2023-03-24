@@ -15,10 +15,9 @@ import { getPinsByLocationId } from '../../managers/LayerManager';
 
 
 
-export const EditLocationDetail = ({ fetchLocationNotes, fetchLocationImages, showEditLocationForm, location, fetchLocations, showLocationDetails }) => {
+export const EditLocationDetail = ({ fetchLocationNotes, fetchLocationImages, showEditLocationForm, location, fetchLocations, showLocationDetails, locationNotes }) => {
     const [addNote, setAddNote] = useState(false);
     const [addLayer, setAddLayer] = useState(false);
-    const [locationNotes, setLocationNotes] = useState([])
     const [modal, setModal] = useState()
     const [noteToUpdate, setNoteToUpdate] = useState([])
     const [uploadImage, setUploadImage] = useState(false)
@@ -45,7 +44,7 @@ export const EditLocationDetail = ({ fetchLocationNotes, fetchLocationImages, sh
             <div className="overlay-edit">
                 <div className="modal-content-edit">
                     <div className="details-edit-form" key={`location--${location.id}`}>
-                        <button className="edit-modal-close"
+                        <section className="top-section"><div className='top'><button className="edit-modal-close"
                             onClick={() => {
                                 showEditLocationForm();
                                 fetchLocationNotes();
@@ -53,12 +52,16 @@ export const EditLocationDetail = ({ fetchLocationNotes, fetchLocationImages, sh
                                 fetchLocationImages()
                             }}
                             >Close</button>
-                        <div className="location-details-edit">
-                            {location.name}
+                        <div className="location-details-edit"></div>
+                           <div className="location-name-edit">{location.name}</div> </div>
+                        </section>
+                        <div className='Location-notes'>Location Notes<AddNotesButton setAddNote={setAddNote} /></div>
+                        <div className='notes-container'>
+                        {addNote && <AddNotesForm location={location} setAddNote={setAddNote} fetchLocationNotes={fetchLocationNotes} />}
                             {locationNotes.map(
                                 (note) => {
-                                    return <section className="notes" key={note.id}>
-                                        <button onClick={() => {
+                                    return <section className="notes-edit" key={note.id}>
+                                        <button className="edit-note-button" onClick={() => {
                                             toggleModal()
                                             setNoteToUpdate(note)
                                         }}>Edit</button>{note.note}
@@ -68,21 +71,20 @@ export const EditLocationDetail = ({ fetchLocationNotes, fetchLocationImages, sh
                                 }
 
                             )}
-                            <div className='edit-location-modal'>
                                 {modal && <EditNoteForm setModal={setModal} noteToUpdate={noteToUpdate} fetchLocationNotes={fetchLocationNotes} />}
-                                <AddNotesButton setAddNote={setAddNote} />
-                                <AddLayerToLocationButton location={location} setAddLayer={setAddLayer} />
+                                </div>
+                                <div className='layer'><section className='layer-header'><div className="layer-edit">
+                                <div className="layer-title">Your Location Layers</div> 
+                                <AddLayerToLocationButton location={location} setAddLayer={setAddLayer} /></div></section>
                                 {addLayer && <AddLayerForm location={location} setAddPin={setAddLayer} fetchUserPins={fetchUserPins} />}
-                                <DisplayLayers location={location} fetchUserPins={fetchUserPins} userLayers={userLayers} />
+                                <DisplayLayers location={location} fetchUserPins={fetchUserPins} userLayers={userLayers} /></div>
                                 <UploadImageButton setUploadImage={setUploadImage} />
                                 <DeleteLocationButton location={location} showLocationDetails={showLocationDetails} fetchLocations={fetchLocations} />
 
-                                {addNote && <AddNotesForm location={location} setAddNote={setAddNote} fetchLocationNotes={fetchLocationNotes} />}
+                              
                                 {uploadImage && <UploadImageForm location={location} setUploadImage={setUploadImage} />}</div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
     )
 }

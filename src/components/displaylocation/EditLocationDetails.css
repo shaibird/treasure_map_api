@@ -1,3 +1,44 @@
 .details-edit-form {
     all:unset;
 }
+
+.location-name-edit {
+    font-weight: 600;
+    font-size: 20px;
+    transform: translate(100px, -40px);
+    
+}
+
+
+
+.Location-notes {
+    font-weight:600;
+    display: flex;
+    align-items: center;
+    gap: 250px;
+    align-content: flex-start
+}
+
+.notes-container{
+    padding-bottom: 8px;
+    border-bottom: 2px solid lightgray;
+}
+
+.edit-note-button {
+    margin-right:6px;
+}
+
+
+.layer {
+    padding-bottom: 8px;
+    border-bottom: 2px solid lightgray;
+}
+
+.layer-edit{
+    font-weight:600;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 140px;
+    align-content: flex-start
+}
