@@ -66,6 +66,7 @@ export const LocationDetails = ({setShowLocationDetails, locationDetail, fetchLo
         fetchLocationNotes();
       }, []);
 
+      console.log(locationNotes)
 
     return <section className="details" key={`location--${locationDetail.id}`}>
     <div className="images" ><DisplayLocationImages locationImages={locationImages}/></div>
@@ -81,14 +82,15 @@ export const LocationDetails = ({setShowLocationDetails, locationDetail, fetchLo
             }
         )}
         {addNote && <AddNotesForm location={locationDetail} setAddNote={setAddNote} fetchLocationNotes={fetchLocationNotes}/> }
+        <div className="layer-title">Your Location Layers</div> 
         <DisplayLayers location={locationDetail} fetchUserPins={fetchUserPins} userLayers={userLayers}/>
         <button className="close-button-explore" onClick={showLocationDetails}>Close</button>
         <EditLocationButton showEditLocationForm={showEditLocationForm} />
-        {modal && <EditNoteForm setModal={setModal} noteToUpdate={noteToUpdate} fetchLocationNotes={fetchLocationNotes} />} 
+        {modal && <EditNoteForm setModal={setModal} noteToUpdate={noteToUpdate} fetchLocationNotes={fetchLocationNotes} />}
         {addLayer && <AddLayerForm location={locationDetail} setAddPin={setAddLayer} fetchUserPins={fetchUserPins}/>}
         {uploadImage && <UploadImageForm location={locationDetail} setUploadImage={setUploadImage} fetchLocationImages={fetchLocationImages}/>}
         
-        {editLocation && <EditLocationDetail location={locationDetail} showLocationDetails={showLocationDetails} showEditLocationForm={showEditLocationForm} fetchLocationNotes={fetchLocationNotes} fetchLocationImages={fetchLocationImages} fetchUserPins={fetchUserPins}/>}
+        {editLocation && <EditLocationDetail locationNotes={locationNotes} location={locationDetail} showLocationDetails={showLocationDetails} showEditLocationForm={showEditLocationForm} fetchLocationNotes={fetchLocationNotes} fetchLocationImages={fetchLocationImages} fetchUserPins={fetchUserPins}/>}
     </div>
     </section>
 }

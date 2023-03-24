@@ -59,11 +59,11 @@ export const AddNotesForm = ({ location, setAddNote, fetchLocationNotes }) => {
                 <fieldset className="notes">
                     <div className="notes-form">
                         <label htmlFor="name">Note:</label>
-                        <input
+                        <textarea
+                            rows="5" cols="25"
                             required autoFocus
                             type="text"
                             className="notes-form-control"
-                            placeholder="Location Note"
                             value={note.note}
                             onChange={(event) => setNote(prevNote => ({ ...prevNote, note: event.target.value }))}
                         />
