@@ -23,6 +23,7 @@ export const Explore = () => {
     setLocations(data);
   }
 
+  console.log(locationDetail)
 
   useEffect(() => {
     fetchLocations()
@@ -37,7 +38,7 @@ export const Explore = () => {
         <SideBar position={position} locations={locations} setLocations={setLocations} setShowLocationDetails={setShowLocationDetails} setLocationDetail={setLocationDetail} locationDetail={locationDetail} fetchLocations={fetchLocations} />
       </div>
       <div className="map-container">
-        <Map position={position} setPosition={setPosition} locations={locations} setShowLocationDetails={setShowLocationDetails} setLocationDetail={setLocationDetail} />
+        <Map position={position} locationDetail={locationDetail} setPosition={setPosition} locations={locations} setShowLocationDetails={setShowLocationDetails} setLocationDetail={setLocationDetail} />
       </div>
       {showSaveLocation && <SaveLocation setShowSaveLocation={setShowSaveLocation} position={position} setPosition={setPosition} fetchLocations={fetchLocations} />}
       {showLocationDetails && <LocationDetails setShowLocationDetails={setShowLocationDetails} setLocationDetail={setLocationDetail} locationDetail={locationDetail} fetchLocations={fetchLocations} />}

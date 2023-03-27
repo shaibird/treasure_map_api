@@ -7,7 +7,7 @@ export const DisplayLayers = ({location, fetchUserPins, userLayers}) => {
   const localUser = localStorage.getItem("tm_token");
   const userObject = JSON.parse(localUser);
 
-
+  console.log(userLayers)
 
   useEffect(() => {
     fetchUserPins();
