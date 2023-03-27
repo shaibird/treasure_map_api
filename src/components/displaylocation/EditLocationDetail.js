@@ -15,13 +15,12 @@ import { getPinsByLocationId } from '../../managers/LayerManager';
 
 
 
-export const EditLocationDetail = ({ fetchLocationNotes, fetchLocationImages, showEditLocationForm, location, fetchLocations, showLocationDetails, locationNotes }) => {
+export const EditLocationDetail = ({ userLayers, setUserLayers, fetchLocationNotes, fetchLocationImages, showEditLocationForm, location, fetchLocations, showLocationDetails, locationNotes }) => {
     const [addNote, setAddNote] = useState(false);
     const [addLayer, setAddLayer] = useState(false);
     const [modal, setModal] = useState()
     const [noteToUpdate, setNoteToUpdate] = useState([])
     const [uploadImage, setUploadImage] = useState(false)
-    const [userLayers, setUserLayers] = useState([]);
     const [addPin, setAddPin] = useState(false)
 
     const toggleModal = () => {

@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, useMapEvents, useMap, Popup } from 'react-leaflet';
 import './Map.css';
+import L from 'leaflet';
 
-export const Map = ({ position, setPosition, locations, setShowLocationDetails, setLocationDetail }) => {
+
+
+export const Map = ({ locationDetail, position, setPosition, locations, setShowLocationDetails, setLocationDetail }) => {
   
   const toggleLocationDetail = () => {
     setShowLocationDetails(true);
@@ -17,7 +20,8 @@ export const Map = ({ position, setPosition, locations, setShowLocationDetails, 
   };
 
   return (
-    <MapContainer center={[35.0458, -85.3094]} zoom={10} scrollWheelZoom={true}>
+    <MapContainer center={locationDetail.latitude && locationDetail.longitude ? [locationDetail.latitude, locationDetail.longitude] : [35.0458, -85.3094]}
+    zoom={10} scrollWheelZoom={true}>
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       <LocationMarker />
       {locations.map(location => (

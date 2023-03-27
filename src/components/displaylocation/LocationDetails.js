@@ -64,6 +64,7 @@ export const LocationDetails = ({setShowLocationDetails, locationDetail, fetchLo
 
     useEffect(() => {
         fetchLocationNotes();
+        fetchUserPins()
       }, []);
 
       console.log(locationNotes)
@@ -90,7 +91,7 @@ export const LocationDetails = ({setShowLocationDetails, locationDetail, fetchLo
         {addLayer && <AddLayerForm location={locationDetail} setAddPin={setAddLayer} fetchUserPins={fetchUserPins}/>}
         {uploadImage && <UploadImageForm location={locationDetail} setUploadImage={setUploadImage} fetchLocationImages={fetchLocationImages}/>}
         
-        {editLocation && <EditLocationDetail locationNotes={locationNotes} location={locationDetail} showLocationDetails={showLocationDetails} showEditLocationForm={showEditLocationForm} fetchLocationNotes={fetchLocationNotes} fetchLocationImages={fetchLocationImages} fetchUserPins={fetchUserPins}/>}
+        {editLocation && <EditLocationDetail userLayers={userLayers} setUserLayers={setUserLayers} locationNotes={locationNotes} location={locationDetail} showLocationDetails={showLocationDetails} showEditLocationForm={showEditLocationForm} fetchLocationNotes={fetchLocationNotes} fetchLocationImages={fetchLocationImages} fetchUserPins={fetchUserPins} fetchLocations={fetchLocations}/>}
     </div>
     </section>
 }
