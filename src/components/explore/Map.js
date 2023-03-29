@@ -21,7 +21,7 @@ export const Map = ({ locationDetail, position, setPosition, locations, setShowL
 
   return (
     <MapContainer center={locationDetail.latitude && locationDetail.longitude ? [locationDetail.latitude, locationDetail.longitude] : [35.0458, -85.3094]}
-    zoom={10} scrollWheelZoom={true}>
+    zoom={14} scrollWheelZoom={true}>
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       <LocationMarker />
       {locations.map(location => (

@@ -1,0 +1,19 @@
+.locations-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.one-location-grid {
+    padding-left: 100px;
+    padding-top: 60px;
+    
+}
+
+.grid-header {
+    padding-top: 40px;
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 200px; 
+}
