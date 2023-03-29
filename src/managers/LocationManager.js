@@ -43,3 +43,7 @@ export const deleteNote = (id) => {
   }
 
 
+export const getCommunityLocations = () => {
+  return fetchIt(`http://localhost:8000/locations?exclude_user_pins=true`, {
+  })
+}

@@ -7,29 +7,29 @@ import { LocationDetails } from "../displaylocation/LocationDetails"
 import { getLocations } from "../../managers/LocationManager"
 import { getAllImages } from "../../managers/ImageManager"
 
-export const Explore = () => {
+export const Explore = ({locations, setLocations, fetchLocations, setLocationDetail, locationDetail, showLocationDetails, setShowLocationDetails}) => {
   const [position, setPosition] = useState(null);
-  const [locations, setLocations] = useState([]);
+  // const [locations, setLocations] = useState([]);
   const [showSaveLocation, setShowSaveLocation] = useState(false);
-  const [showLocationDetails, setShowLocationDetails] = useState(false);
-  const [locationDetail, setLocationDetail] = useState([])
+  // const [showLocationDetails, setShowLocationDetails] = useState(false);
+  // const [locationDetail, setLocationDetail] = useState([])
 
   const handleSaveLocationClick = () => {
     setShowSaveLocation(true);
   }
 
-  const fetchLocations = async () => {
-    const data = await getLocations();
-    setLocations(data);
-  }
+  // const fetchLocations = async () => {
+  //   const data = await getLocations();
+  //   setLocations(data);
+  // }
 
-  console.log(locationDetail)
+  // console.log(locationDetail)
 
-  useEffect(() => {
-    fetchLocations()
-  },
-    []
-  )
+  // useEffect(() => {
+  //   fetchLocations()
+  // },
+  //   []
+  // )
 
   return (
     <div className="explore">
