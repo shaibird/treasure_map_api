@@ -8,7 +8,7 @@ import defaultImage from './defaultImage.svg'
 export const DisplayLocationImages = ({locationImages}) => {
   if (locationImages.length > 0) {
     return (
-      <div className="box">
+      <div className="box-image">
         <Carousel useKeyboardArrows={true}>
           {locationImages.map((location) => (
             <div className="slide" key={location.id}>
@@ -20,7 +20,7 @@ export const DisplayLocationImages = ({locationImages}) => {
     );
   } else {
     return (
-      <div className="box">
+      <div className="box-image">
         <img className="default" alt="default_image" src={defaultImage} />
       </div>
     );
